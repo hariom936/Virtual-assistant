@@ -11,6 +11,12 @@ import os
 import smtplib
 import random
 
+
+
+
+# //odejnfuenernfeirufefbe feorifnme
+# ekfmnefvmdrvmrfmvkmw
+
 print("Harii is starting")
 
 sir="Harii"
