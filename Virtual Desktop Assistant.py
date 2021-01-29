@@ -1,21 +1,32 @@
-from tkinter import *
-from PIL import ImageTk,Image
-import turtle
+from tkinter import * 
+#Tkinter is the standard GUI library for Python. 
+# Python when combined with Tkinter provides a fast and easy way to create GUI applications. 
+# Tkinter provides a powerful object-oriented interface to the Tk GUI toolkit. ... 
+#Create the GUI application main window.
 
-import pyttsx3
-import speech_recognition as sr
-import datetime
-import wikipedia
-import webbrowser
-import os
-import smtplib
-import random
+from PIL import ImageTk,Image 
+# PIL is the Python Imaging Library by Fredrik Lundh and Contributors.
+import turtle #turtle is a pre-installed Python library that enables users to create pictures and shapes by providing them with a virtual canvas.
+
+import pyttsx3 #pyttsx3 is a text-to-speech conversion library in Python
+
+import speech_recognition as sr 
+#Speech recognition, also known as automatic speech recognition (ASR), 
+#computer speech recognition, or speech-to-text, is a capability which enables a program to process human speech into a written format.
+import datetime #This module provides various time-related functions. For related functionality, see also the datetime and calendar modules.
+
+import wikipedia #Wikipedia is a Python library that makes it easy to access and parse data from Wikipedia.
+import webbrowser #The webbrowser module provides a high-level interface to allow displaying Web-based documents to users.
+
+import os #The design of all built-in operating system dependent modules of Python is ... operating system are also available through the os module,
+import smtplib #The smtplib module defines an SMTP client session object that can be used to send mail to any Internet machine with an SMTP or ESMTP listener daemon.
+
+import random  #You can generate random numbers in Python by using random module. Python offers random module that can generate random numbers. 
 
 
 
 
-# //odejnfuenernfeirufefbe feorifnme
-# ekfmnefvmdrvmrfmvkmw
+
 
 print("Harii is starting")
 
@@ -52,7 +63,7 @@ def takeCommand():
         # minimum seconds of speaking audio before  we consider the speaking audio a phase-
         # valuse below this are ignored (for filtering out clicks and pops)
 
-        r.pause_threshold = 0.8
+        r.pause_threshold = 1
         audio = r.listen(Source)
         
  
@@ -68,8 +79,10 @@ def takeCommand():
         print ("Say that again please sir...")
         speak("Say that again please sir...")
         return "None"
-class Widget():
-    def _init_(self):
+
+
+class Run():
+    def __init__(self): #def __init__(self) -> None: ...
         root=Tk()
         root.title('Harii')
         root.geometry('1280x720')
@@ -79,14 +92,14 @@ class Widget():
         panel.pack(side='right',fill='both',expand='no')
 
         compText=StringVar()
-        userText=StringVar()
+        self.userText=StringVar()
 
-        userText.set('click \'Run Harii\' to Give command')
+        self.userText.set('click \'Run Harii\' to Give command')
 
         userFrame=LabelFrame(root,text='User',font=('Black ops one',10,'bold'))
         userFrame.pack(fill='both',expand='yes')
 
-        left=Message(userFrame,textvariable= userText, bg='#FF0000',fg='black')
+        left=Message(userFrame,textvariable= self.userText, bg='#33CFFF',fg='black')
         left.config(font=("Century Gothic",24,'bold'))
         left.pack(fill='both', expand='yes')
 
@@ -98,8 +111,8 @@ class Widget():
         left2.pack(fill='both', expand='yes')
 
         compText.set('I am Harii Sir, PLease tell me how may I help you')
-        btn1=Button(root,text='Run Hari',font=('Black ops one',10,'bold'),bg='#800000',fg='white',command=self.clicked).pack(fill='x',expand='no')
-        btn2=Button(root,text='Close',font=('Black ops one',10,'bold'),bg='#800000',fg='white',command=root.destroy).pack(fill='x',expand='no')
+        Button(root,text='Run Hari',font=('Black ops one',10,'bold'),bg='#800000',fg='white',command=self.clicked).pack(fill='x',expand='no')
+        Button(root,text='Close',font=('Black ops one',10,'bold'),bg='#800000',fg='white',command=root.destroy).pack(fill='x',expand='no')
 
 
         root.mainloop()
@@ -107,13 +120,15 @@ class Widget():
     def clicked(self):
         print("Working..")
         query=takeCommand()
-        userText.set('Listening...')
-        userText.set(query)
+        self.userText.set('Listening...')
+        self.userText.set(query)
         query = query.lower()
         if 'wikipedia' in query:
             # logic for excute the takes based on query
             #  if  'Wikipedia' in query:
             # print("hii")
+            chrome_path ='C:/Program Files/Google/Chrome/Application/chrome.exe%s'
+            webbrowser.get(chrome_path).open("wikipedia.org")
             speak('Searching Wikipedia...')
             query = query.replace("wikipedia", "")
             results =  wikipedia.summary(query, sentences=2)
@@ -123,11 +138,11 @@ class Widget():
             
         elif 'youtube' in query:
             chrome_path ='C:/Program Files/Google/Chrome/Application/chrome.exe%s'
-            webbrowser.open("youtube.com")
+            webbrowser.get(chrome_path).open("youtube.com")
         elif 'google' in query:
             webbrowser.open("google.com")
-        elif 'stackoverflow' in query:
-            webbrowser.open("stackoverflow.com")
+        elif 'stack overflow' in query:
+            webbrowser.open("stackoverflow.com") 
         elif 'music' in query:
             n = random.randint(0,100)
             print(n)
@@ -147,9 +162,8 @@ class Widget():
 
 if __name__ == "__main__":
         WishMe()
-        widget=Widget()
+        widget=Run()
       
        
-
 
 
